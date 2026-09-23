@@ -1,6 +1,6 @@
 import React from 'react';
-import { Home, Bed, Wrench, Megaphone, MoreHorizontal } from 'lucide-react';
 import { TabType } from '../types';
+import { NAV_TABS } from '../data/navTabs';
 
 interface BottomNavProps {
   activeTab: TabType;
@@ -8,18 +8,10 @@ interface BottomNavProps {
 }
 
 export const BottomNav: React.FC<BottomNavProps> = ({ activeTab, onTabChange }) => {
-  const tabs = [
-    { id: 'home' as TabType, label: 'Home', Icon: Home },
-    { id: 'stay' as TabType, label: 'Stay', Icon: Bed },
-    { id: 'requests' as TabType, label: 'Requests', Icon: Wrench },
-    { id: 'announcements' as TabType, label: 'Announcements', Icon: Megaphone },
-    { id: 'more' as TabType, label: 'More', Icon: MoreHorizontal },
-  ];
-
   return (
-    <nav className="sticky bottom-0 bg-white border-t border-slate-100 px-3 py-2 z-20 shadow-[0_-4px_12px_rgba(0,0,0,0.03)]">
+    <nav className="sticky bottom-0 bg-white border-t border-slate-100 px-3 py-2 z-20 shadow-[0_-4px_12px_rgba(0,0,0,0.03)] lg:hidden">
       <div className="flex items-center justify-around max-w-md mx-auto">
-        {tabs.map(({ id, label, Icon }) => {
+        {NAV_TABS.map(({ id, label, Icon }) => {
           const isActive = activeTab === id;
           return (
             <button

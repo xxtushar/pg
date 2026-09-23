@@ -9,7 +9,7 @@ interface HomePageProps {
 
 export const HomePage: React.FC<HomePageProps> = ({ user, onNavigateTab }) => {
   return (
-    <div className="p-4 space-y-4 bg-slate-50/50 min-h-full pb-6">
+    <div className="p-4 space-y-4 bg-slate-50/50 min-h-full pb-6 lg:mx-auto lg:max-w-5xl lg:space-y-6 lg:p-8">
       {/* Greeting Banner */}
       <div className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-2xl p-4 shadow-md">
         <div className="flex items-center justify-between">

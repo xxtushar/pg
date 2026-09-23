@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { PhoneContainer } from './components/PhoneContainer';
+import { AppShell } from './components/AppShell';
+import { Sidebar } from './components/Sidebar';
 import { Header } from './components/Header';
 import { BottomNav } from './components/BottomNav';
 import { ProfileSupportPage } from './pages/ProfileSupportPage';
@@ -104,19 +105,32 @@ export function App() {
     setActiveTab('requests');
   };
 
-  return (
-    <PhoneContainer>
-      {/* Header Bar */}
-      <Header
-        title={getHeaderTitle()}
-        selectedProperty={selectedProperty}
-        onSelectProperty={(prop) => setSelectedProperty(prop)}
-        onOpenNotifications={() => setIsNotificationsOpen(true)}
-        notificationCount={notificationCount}
-      />
+  const handleLogout = () => {
+    if (confirm('Are you sure you want to log out of MyPG?')) {
+      alert('Logged out successfully.');
+    }
+  };
 
-      {/* Main Page Render Area */}
-      <main className="flex-1 bg-slate-50/50">
+  return (
+    <div className="flex min-h-dvh bg-slate-200 lg:bg-white">
+      <Sidebar
+        activeTab={activeTab}
+        onTabChange={(tab) => setActiveTab(tab)}
+        user={mockUserProfile}
+        onLogout={handleLogout}
+      />
+      <AppShell>
+        {/* Header Bar */}
+        <Header
+          title={getHeaderTitle()}
+          selectedProperty={selectedProperty}
+          onSelectProperty={(prop) => setSelectedProperty(prop)}
+          onOpenNotifications={() => setIsNotificationsOpen(true)}
+          notificationCount={notificationCount}
+        />
+
+        {/* Main Page Render Area */}
+        <main className="flex-1 bg-slate-50/50 lg:bg-white">
         {activeTab === 'home' && (
           <HomePage
             user={mockUserProfile}
@@ -155,11 +169,7 @@ export function App() {
             contacts={mockImportantContacts}
             onActionClick={handleQuickActionClick}
             onContactCall={(contact) => setActiveCallContact(contact)}
-            onLogout={() => {
-              if (confirm('Are you sure you want to log out of MyPG?')) {
-                alert('Logged out successfully.');
-              }
-            }}
+            onLogout={handleLogout}
             onToggleNotifications={() => setNotificationsEnabled(!notificationsEnabled)}
             notificationsEnabled={notificationsEnabled}
             onSelectLanguage={() => {
@@ -224,7 +234,8 @@ export function App() {
           </div>
         </div>
       )}
-    </PhoneContainer>
+      </AppShell>
+    </div>
   );
 }
 

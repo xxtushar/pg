@@ -37,7 +37,7 @@ export const RequestsPage: React.FC<RequestsPageProps> = ({
   };
 
   return (
-    <div className="p-4 space-y-4 bg-slate-50/50 min-h-full pb-6">
+    <div className="p-4 space-y-4 bg-slate-50/50 min-h-full pb-6 lg:mx-auto lg:max-w-5xl lg:space-y-6 lg:p-8">
       {/* Header CTA Banner */}
       <div className="bg-white rounded-2xl p-4 border border-slate-100 shadow-sm flex items-center justify-between gap-3">
         <div>
@@ -54,11 +54,12 @@ export const RequestsPage: React.FC<RequestsPageProps> = ({
       </div>
 
       {/* Ticket List Section */}
-      <div className="space-y-3">
+      <div className="space-y-3 lg:space-y-4">
         <h4 className="text-xs font-bold text-slate-500 uppercase tracking-wider px-1">
           Your Maintenance Tickets ({tickets.length})
         </h4>
 
+        <div className="space-y-3 lg:grid lg:grid-cols-2 lg:gap-4 lg:space-y-0">
         {tickets.map((ticket) => (
           <div
             key={ticket.id}
@@ -92,6 +93,7 @@ export const RequestsPage: React.FC<RequestsPageProps> = ({
             </div>
           </div>
         ))}
+        </div>
       </div>
     </div>
   );

@@ -74,7 +74,7 @@ export const ProfileSupportPage: React.FC<ProfileSupportPageProps> = ({
   };
 
   return (
-    <div className="p-4 space-y-4 bg-slate-50/50 min-h-full pb-6">
+    <div className="p-4 space-y-4 bg-slate-50/50 min-h-full pb-6 lg:mx-auto lg:max-w-5xl lg:space-y-6 lg:p-8">
       {/* 1. Main Profile Card */}
       <div className="bg-white rounded-2xl p-4 border border-slate-100 shadow-sm transition-all hover:shadow-md">
         <div className="flex items-start gap-4">
@@ -124,7 +124,7 @@ export const ProfileSupportPage: React.FC<ProfileSupportPageProps> = ({
       </div>
 
       {/* 2. Quick Links Grid (2x3 Layout) */}
-      <div className="grid grid-cols-2 gap-3">
+      <div className="grid grid-cols-2 gap-3 lg:grid-cols-3">
         {quickActions.map((action) => (
           <button
             key={action.id}
@@ -151,6 +151,7 @@ export const ProfileSupportPage: React.FC<ProfileSupportPageProps> = ({
         ))}
       </div>
 
+      <div className="space-y-4 lg:grid lg:grid-cols-2 lg:items-start lg:gap-6 lg:space-y-0">
       {/* 3. Important Contacts Section */}
       <div className="bg-white rounded-2xl p-4 border border-slate-100 shadow-sm space-y-3">
         <h3 className="text-sm font-bold text-slate-900 tracking-tight">
@@ -259,6 +260,7 @@ export const ProfileSupportPage: React.FC<ProfileSupportPageProps> = ({
           </div>
           <ChevronRight className="w-4 h-4 text-rose-400" />
         </button>
+      </div>
       </div>
     </div>
   );

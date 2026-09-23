@@ -20,29 +20,18 @@ export const Header: React.FC<HeaderProps> = ({
   const [dropdownOpen, setDropdownOpen] = React.useState(false);
 
   return (
-    <header className="px-5 pt-4 pb-2 bg-white sticky top-0 z-20 border-b border-slate-100">
-      {/* Top Bar: Brand Logo & Notification Bell */}
-      <div className="flex items-center justify-between mb-3">
+    <header className="px-5 pt-4 pb-2 bg-white sticky top-0 z-20 border-b border-slate-100 lg:px-8 lg:pt-6 lg:pb-4">
+      {/* Top Bar: Brand Logo & Notification Bell (logo hidden on desktop — the sidebar already brands it) */}
+      <div className="flex items-center justify-between mb-3 lg:hidden">
         <h1 className="text-[26px] font-extrabold text-blue-600 tracking-tight leading-none">
           MyPG
         </h1>
-        <button
-          onClick={onOpenNotifications}
-          className="relative p-2 text-slate-700 hover:text-blue-600 hover:bg-slate-50 rounded-full transition-colors active-press"
-          aria-label="Notifications"
-        >
-          <Bell className="w-6 h-6 stroke-[1.8]" />
-          {notificationCount > 0 && (
-            <span className="absolute top-1 right-1 bg-rose-500 text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center border-2 border-white">
-              {notificationCount}
-            </span>
-          )}
-        </button>
+        <NotificationBell onOpen={onOpenNotifications} count={notificationCount} />
       </div>
 
       {/* Title & Property Selector Row */}
       <div className="flex items-center justify-between gap-2">
-        <h2 className="text-[22px] font-bold text-slate-900 tracking-tight leading-tight">
+        <h2 className="text-[22px] font-bold text-slate-900 tracking-tight leading-tight lg:text-[26px]">
           {title}
         </h2>
 
@@ -87,7 +76,29 @@ export const Header: React.FC<HeaderProps> = ({
             </>
           )}
         </div>
+
+        {/* On desktop the top bar (with the bell) is hidden, so show it here instead */}
+        <div className="hidden lg:block">
+          <NotificationBell onOpen={onOpenNotifications} count={notificationCount} />
+        </div>
       </div>
     </header>
   );
 };
+
+function NotificationBell({ onOpen, count }: { onOpen: () => void; count: number }) {
+  return (
+    <button
+      onClick={onOpen}
+      className="relative p-2 text-slate-700 hover:text-blue-600 hover:bg-slate-50 rounded-full transition-colors active-press"
+      aria-label="Notifications"
+    >
+      <Bell className="w-6 h-6 stroke-[1.8]" />
+      {count > 0 && (
+        <span className="absolute top-1 right-1 bg-rose-500 text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center border-2 border-white">
+          {count}
+        </span>
+      )}
+    </button>
+  );
+}

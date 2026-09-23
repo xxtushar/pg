@@ -113,7 +113,7 @@ export const AnnouncementsPage: React.FC<AnnouncementsPageProps> = ({
   };
 
   return (
-    <div className="p-4 space-y-4 bg-slate-50/50 min-h-full pb-6">
+    <div className="p-4 space-y-4 bg-slate-50/50 min-h-full pb-6 lg:mx-auto lg:max-w-5xl lg:space-y-6 lg:p-8">
       {/* 1. Filter Chips Row */}
       <div className="flex items-center gap-2 overflow-x-auto no-scrollbar py-1">
         {/* All Pill */}
@@ -219,7 +219,7 @@ export const AnnouncementsPage: React.FC<AnnouncementsPageProps> = ({
       </div>
 
       {/* 3. Announcements Card List */}
-      <div className="space-y-3">
+      <div className="space-y-3 lg:grid lg:grid-cols-2 lg:gap-4 lg:space-y-0">
         {filteredAnnouncements.map((item) => (
           <div
             key={item.id}
